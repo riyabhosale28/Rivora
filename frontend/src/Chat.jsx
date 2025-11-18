@@ -41,13 +41,13 @@ function Chat(){
     </div>
   ))}
   {
-    prevChats.length>0 &&(
+    prevChats?.length>0 &&(
         <>
         {
             latestReply===null ?(
                  <div className="gptDiv" key="non-typing">
       <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-        {prevChats[prevChats.length-1].content}
+        {prevChats[prevChats?.length-1].content}
       </ReactMarkdown>
     </div>
             ):(
