@@ -25,12 +25,10 @@ function ChatWindow() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Toggle dropdown menu
   const handleProfileClick = () => {
     setIsOpen((prev) => !prev);
   };
 
-  // Send message + get reply from server
   const getReply = async () => {
     if (!prompt.trim()) return;
 
@@ -44,7 +42,7 @@ function ChatWindow() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Send cookies for logged-in user
+        credentials: "include",
         body: JSON.stringify({
           message: userMessage,
           threadId: currThreadId,
@@ -53,7 +51,6 @@ function ChatWindow() {
 
       const res = await response.json();
 
-      // update UI
       setReply(res.reply);
       setPrevChats((prev) => [
         ...prev,
@@ -63,14 +60,13 @@ function ChatWindow() {
     } catch (err) {
       console.log("Chat error:", err);
     } finally {
-      setPrompt(""); // clear input box
+      setPrompt("");
       setLoading(false);
     }
   };
 
   return (
     <div className="chatWindow">
-      {/* Navbar */}
       <div className="navbar">
         <span>
           Rivora <i className="fa-solid fa-angle-down"></i>
@@ -83,7 +79,6 @@ function ChatWindow() {
         </div>
       </div>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <div className="dropDown">
           <div className="dropDownItem" onClick={() => navigate("/settings")}>
@@ -101,7 +96,8 @@ function ChatWindow() {
               navigate("/login");
             }}
           >
-            <i className="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Logout
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
+            &nbsp;Logout
           </div>
 
           <div className="dropDownItem" onClick={() => navigate("/help")}>
@@ -110,13 +106,10 @@ function ChatWindow() {
         </div>
       )}
 
-      {/* Chat Area */}
       <Chat />
 
-      {/* Loading Spinner */}
       {loading && <ScaleLoader color="#fff" loading={loading} />}
 
-      {/* Input Area */}
       <div className="chatInput">
         <div className="inputBox">
           <input
@@ -132,7 +125,8 @@ function ChatWindow() {
         </div>
 
         <p className="info">
-          Rivora can make mistakes. Check important info. See Cookie Preferences.
+          Rivora can make mistakes. Check important info. See Cookie
+          Preferences.
         </p>
       </div>
     </div>
@@ -140,4 +134,3 @@ function ChatWindow() {
 }
 
 export default ChatWindow;
-

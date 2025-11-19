@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../api";
+import "../styles/auth.css";
+import "../components/pages.css";
 
 export default function Help() {
   const [data, setData] = useState(null);
@@ -8,7 +10,7 @@ export default function Help() {
     API.get("/user/help").then((res) => setData(res.data));
   }, []);
 
-  if (!data) return <p>Loading...</p>;
+  if (!data) return <p className="page">Loading...</p>;
 
   return (
     <div className="page">
@@ -21,8 +23,9 @@ export default function Help() {
         </div>
       ))}
 
-      <h3>Contact</h3>
+      <h3>Contact Support</h3>
       <p>{data.contact.email}</p>
     </div>
   );
 }
+

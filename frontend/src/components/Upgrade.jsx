@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import API from "../api";
 import { AuthContext } from "../AuthContext";
+import "../styles/auth.css";
+import "../components/pages.css";
 
 const plans = [
   { id: "pro", name: "Pro", price: 9 },
@@ -27,7 +29,7 @@ export default function Upgrade() {
 
   return (
     <div className="page">
-      <h2>Upgrade Plan</h2>
+      <h2>Upgrade Your Plan</h2>
 
       {plans.map((p) => (
         <label key={p.id}>
@@ -41,16 +43,19 @@ export default function Upgrade() {
         </label>
       ))}
 
-      <br />
-
       <label>
-        Months:{" "}
-        <input type="number" value={months} min="1" onChange={(e) => setMonths(e.target.value)} />
+        Months:
+        <input
+          type="number"
+          value={months}
+          min="1"
+          onChange={(e) => setMonths(e.target.value)}
+        />
       </label>
 
       <button onClick={upgrade}>Upgrade</button>
 
-      {msg && <p>{msg}</p>}
+      {msg && <p className="success">{msg}</p>}
     </div>
   );
 }

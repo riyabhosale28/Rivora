@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import API from "../api";
 import { AuthContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import "../styles/auth.css";
 
 export default function Login() {
   const nav = useNavigate();
@@ -23,31 +24,25 @@ export default function Login() {
   };
 
   return (
-    <div className="auth-box">
-      <h2>Login</h2>
-      {err && <p style={{ color: "red" }}>{err}</p>}
+    <div className="auth-page">
+      <div className="auth-box">
+        <h2>Welcome Back</h2>
+        {err && <p className="error">{err}</p>}
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <form onSubmit={handleLogin}>
+          <input type="email" placeholder="Email" 
+            value={email} onChange={(e)=>setEmail(e.target.value)} />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input type="password" placeholder="Password" 
+            value={password} onChange={(e)=>setPassword(e.target.value)} />
 
-        <button>Login</button>
-      </form>
+          <button>Login</button>
+        </form>
 
-      <p>
-        No account? <a href="/register">Register</a>
-      </p>
+        <p>
+          New here? <a href="/register">Create an account</a>
+        </p>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthContext";
 import API from "../api";
+import "../styles/auth.css";
+import "../components/pages.css";
+
 
 export default function Settings() {
   const { user, setUser } = useContext(AuthContext);
@@ -27,16 +30,18 @@ export default function Settings() {
       <h2>Settings</h2>
 
       <label>
-        <input type="checkbox" checked={dark} onChange={() => setDark(!dark)} /> Dark mode
+        <input type="checkbox" checked={dark} onChange={() => setDark(!dark)} />
+        Enable Dark Mode
       </label>
 
       <label>
-        <input type="checkbox" checked={notif} onChange={() => setNotif(!notif)} /> Notifications
+        <input type="checkbox" checked={notif} onChange={() => setNotif(!notif)} />
+        Enable Notifications
       </label>
 
       <button onClick={save}>Save</button>
 
-      {msg && <p>{msg}</p>}
+      {msg && <p className="success">{msg}</p>}
     </div>
   );
 }
