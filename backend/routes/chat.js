@@ -61,10 +61,13 @@ res.status(200).json({error:"Thread deletedsuccessfully!"});
 });
 router.post("/chat",async(req,res)=>{
     const {threadId,message}=req.body;
-    if(!threadId||!message){
-        res.status(400).json({error:"missing required fields"});
+    // if(!threadId||!message){
+    //     res.status(400).json({error:"missing required fields"});
 
-    }
+    // }
+    if(!threadId || !message){
+    return res.status(400).json({error:"missing required fields"});
+}
     try{
 let thread=await Thread.findOne({threadId});
 if(!thread){
